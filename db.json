@@ -2,9 +2,9 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Scottie",
+      "name": "Helena",
       "breed": "Scottish Deerhound",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 2,
@@ -34,7 +34,7 @@
       "id": 6,
       "name": "Oreo",
       "breed": "English Springer",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 7,
@@ -50,9 +50,9 @@
     },
     {
       "id": 9,
-      "name": "Shelby",
+      "name": "Shella",
       "breed": "Kuvasz",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 10,

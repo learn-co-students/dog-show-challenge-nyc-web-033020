@@ -44,9 +44,11 @@ const dogForm = document.querySelector('#dog-form')
 const dogFormName = dogForm[0]
 const dogFormBreed = dogForm[1]
 const dogFormSex = dogForm[2]
+const dogFormSubmit = dogForm[3]
 
 
 populateDogTable()
+
 
 function populateDogTable(){
     fetch(url)
@@ -81,10 +83,10 @@ document.addEventListener('click', e => {
         dogFormName.value = dogName
         dogFormBreed.value = dogBreed
         dogFormSex.value = dogSex
-        dogForm[3].dataset.id = dogId
+        dogFormSubmit.dataset.id = dogId
 
-    } else if (e.target === dogForm[3]){
-        e.preventDefault()
+    } else if (e.target === dogFormSubmit){
+       
         fetch(`${url}/${e.target.dataset.id}`,{
             method: "PATCH",
             headers: urlHeaders,
@@ -93,9 +95,7 @@ document.addEventListener('click', e => {
                 breed: dogFormBreed.value,
                 sex: dogFormSex.value
             })
-        })
-        .then(resp => resp.json())
-        .then(createDogRow)
+        }) 
         
     }
 })
