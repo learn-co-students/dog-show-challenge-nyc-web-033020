@@ -88,12 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const hiddenInput = dogForm.childNodes[0] //select hidden ID field
         hiddenInput.remove()    //remove hidden ID field
 
-        // e.target.reset() //remove form values
-
         //invoke patch request on server
         formPatch(dogId.value, dogName.value, dogBreed.value, dogSex.value)
 
     })
+
+    let reRenderTable = () => {
+        return fetch(url)
+            .then(resp => resp.json())
+            .then(json => renderDogs(json))
+    }
 
     //function to patch updated data
     let formPatch = (id, dogName, dogBreed, dogSex) => {
@@ -106,11 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({
                 name: dogName,
                 breed: dogBreed,
-                dogSex: dogSex
+                sex: dogSex
               })
         })
+            // .then(getAllDogs()) //re-render table by calling on initial get request function --> this isn't working right now
             .then(resp => resp.json())
-            .then(json => console.log(json))
+            .then(json => updateRecord(json))
+            .then(dogForm.reset()) //clear values from table
+
+            //this isn't a DRY way, prefer to do it by rerendering everything but it's not working
+            let updateRecord = (dog) => {
+                const tr = tableBody.querySelector('`tr[data-id=""]`')
+
+
+            }
     }
 
 })
