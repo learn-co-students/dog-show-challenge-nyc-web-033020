@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //click on dog's edit button should populate form with dog's data
     table.addEventListener('click', (e) => {
         if (e.target.className === 'edit-btn') {
-            table.children.innerHTML.textContent = popDogForm
+            e.target = table.row 
+            // console.log(e.target)
+            table.rows[e].cells[0].innerHTML = dogForm.name.value
 
-            dogForm.addEventListener('submit', (e) => {
-                e.preventDefault()
+            // dogForm.addEventListener('submit', (e) => {
+            //     e.preventDefault()
                 
-            })
+            // })
         }
      })   
     
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const grabTableRow = (e) => {
     //     const i = e.target.row
             
-        // table.rows[e].cells[0].innerHTML = dogForm.name.value 
+        // table.rows[i].cells[0].innerHTML = dogForm.name.value 
     //     table.rows[i].cells[1].innerHTML = dogForm.breed.value
     //     table.rows[i].cells[2].innerHTML = dogForm.sex.value 
         
