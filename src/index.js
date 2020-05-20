@@ -44,10 +44,12 @@ document.addEventListener('click', function(e){
                formSex.value = dog.sex
 
                submitButton.addEventListener('click', function(r){
+
+                const newName = fromName.value
+                const newBreed = formBreed.value
+                const newSex = formSex.value
+
                   r.preventDefault()
-                  const newName = fromName.value
-                  const newBreed = formBreed.value
-                  const newSex = formSex.value 
                   e.target.parentElement.parentElement.innerHTML = `<td>${newName}</td><td>${newBreed}</td><td>${newSex}</td><button id="${dog.id}">Edit</button>`
                               fetch(`${url}/${editDogID}`, {
                                   method: 'PATCH',
@@ -65,11 +67,14 @@ document.addEventListener('click', function(e){
                
            })
 
-    } else if (e.target.localName == 'form'){
+    } else if (e.target.localName == 'input'){
         console.log(e.target)
         e.preventDefault()
+        fromName.value = dog.name
+        formBreed.value = dog.breed
+        formSex.value = dog.sex
        
-    }
+    } else {e.preventDefault()}
 })
 
 
