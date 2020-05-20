@@ -39,25 +39,36 @@ document.addEventListener('click', function(e){
     if (e.target.innerHTML = 'Edit'){
         const editDogID = e.target.id
            fetch(`${url}/${editDogID}`).then(res => res.json()).then(dog => {
-               fromName.placeholder = dog.name
-               formBreed.placeholder = dog.breed
-               formSex.placeholder = dog.sex
+               fromName.value = dog.name
+               formBreed.value = dog.breed
+               formSex.value = dog.sex
 
-               submitButton.addEventListener('click', function(e){
-                  e.preventDefault()
+               submitButton.addEventListener('click', function(r){
+                  r.preventDefault()
                   const newName = fromName.value
                   const newBreed = formBreed.value
                   const newSex = formSex.value 
+                  e.target.parentElement.parentElement.innerHTML = `<td>${newName}</td><td>${newBreed}</td><td>${newSex}</td><button id="${dog.id}">Edit</button>`
                               fetch(`${url}/${editDogID}`, {
                                   method: 'PATCH',
                                   headers: {
-                                      "content-type": "application/json"
-                                  }
+                                      "content-type": "application/json",
+                                      accept: "application/json"
+                                  },
+                                  body: JSON.stringify({
+                                      name: newName,
+                                      breed: newBreed,
+                                      sex: newSex
+                                  })
                               })
                })
                
            })
 
+    } else if (e.target.localName == 'form'){
+        console.log(e.target)
+        e.preventDefault()
+       
     }
 })
 
