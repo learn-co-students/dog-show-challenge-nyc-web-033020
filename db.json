@@ -10,7 +10,7 @@
       "id": 2,
       "name": "Teddy",
       "breed": "Rhodesian Ridgeback",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 3,
@@ -94,7 +94,7 @@
       "id": 16,
       "name": "Buddy",
       "breed": "Walker Hound",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 17,

@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             })
             window.location.reload()
+            // fetch(dogsUrl + '/' + e.target.dataset.id)
+            // .then(res => res.json())
+            // .then(data => {
+            //  console.log(dogsTable)
+            // })
         })
     }
 })
