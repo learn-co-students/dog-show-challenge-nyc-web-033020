@@ -1,6 +1,7 @@
 const dogsURL = "http://localhost:3000/dogs"
 const dogPatchURL = "http://localhost:3000/dogs/:id"
 const editButton = document.querySelector('edit')
+const submitButton = document.querySelector('submit')
 
 
 //on page load, render existing dogs set inside of table format
@@ -24,7 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
 //fetch dog info when page loads
     fetch(dogsURL)
     .then(resp => resp.json())
-    .then(json => populateDogTable(json));
+    .then(json => populateDogTable(json))
+
+    const data = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+            "Accept": "application/json"
+        },
+        body: JSON.Stringify()
+    
+        }
+
+   document.addEventListener('submit', )
+       fetch(dogPatchURL, data) 
+       .then(resp => resp.json())
+       .then(console.log)
+    }
 
 //create dog table for later use
 const dogTable = document.createElement('table')
