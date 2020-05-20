@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 const url = 'http://localhost:3000/dogs'
+const form = document.querySelector('form')
 const fromName = document.querySelectorAll('input')[0]
 const formBreed = document.querySelectorAll('input')[1]
 const formSex = document.querySelectorAll('input')[2]
@@ -34,15 +35,25 @@ fetch(url).then(res => res.json()).then(dogs => loadDogTable(dogs))
 
 
 document.addEventListener('click', function(e){
+    e.preventDefault()
     if (e.target.innerHTML = 'Edit'){
         const editDogID = e.target.id
            fetch(`${url}/${editDogID}`).then(res => res.json()).then(dog => {
                fromName.placeholder = dog.name
                formBreed.placeholder = dog.breed
                formSex.placeholder = dog.sex
+
                submitButton.addEventListener('click', function(e){
-                  e.target.preventDefault()
-                  console.dir(fromName)
+                  e.preventDefault()
+                  const newName = fromName.value
+                  const newBreed = formBreed.value
+                  const newSex = formSex.value 
+                              fetch(`${url}/${editDogID}`, {
+                                  method: 'PATCH',
+                                  headers: {
+                                      "content-type": "application/json"
+                                  }
+                              })
                })
                
            })
@@ -51,6 +62,9 @@ document.addEventListener('click', function(e){
 })
 
 
+form.addEventListener('click', function(e){
+    e.preventDefault()
+})
 
 
 })
