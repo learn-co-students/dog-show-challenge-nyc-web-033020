@@ -23,11 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 dogForm.name.value = dog.name
                 dogForm.breed.value = dog.breed
                 dogForm.sex.value = dog.sex
+                dogForm.dataset.id = dog.id
             })
         })
         dogForm.addEventListener('submit', e => {
             e.preventDefault()
-            fetch(dogsUrl + '/' + id, {
+            fetch(dogsUrl + '/' + e.target.dataset.id, {
                 method: 'PATCH',
                 headers:{
                     'Content-Type': 'application/json',
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "sex": dogForm.sex.value
                 })
             })
+            window.location.reload()
         })
     }
 })
