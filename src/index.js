@@ -3,10 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const dogTable = document.getElementById("table-body")
   const dogForm = document.getElementById("dog-form")
 
+  let editDogId = 0
+
   function fetchDogs() {
     fetch(baseUrl)
       .then(res => res.json())
       .then(json => displayDogs(json))
+  }
+
+  function patchDog(newDog) {
+    fetch(baseUrl + newDog.id, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "id": newDog.id,
+        "name": newDog.name,
+        "breed": newDog.breed,
+        "sex": newDog.sex
+      })
+    })
+      .then(fetchDogs())
   }
 
   function displayDogs(dogs) {
@@ -29,13 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchDogs()
 
   dogTable.addEventListener("click", e => {
-    let dogId = e.target.parentNode.parentNode.dataset.id
-    
-    if (dogId) {
+    if (e.target.textContent == "Edit") {
+      editDogId = e.target.parentNode.parentNode.dataset.id 
+      const dogInfo = e.target.parentNode.parentNode.querySelectorAll("td")
       const formInputs = dogForm.querySelectorAll("input")
 
-      console.dir(e.target)
-      console.dir(e.target.parentNode)
+      for(let i = 0; i < 3; i++) {
+        formInputs[i].value = dogInfo[i].innerText
+      }
     }
+  })
+
+  dogForm.addEventListener("submit", e => {
+    e.preventDefault()
   })
 })
