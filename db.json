@@ -2,14 +2,14 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Baby",
-      "breed": "Scottish Deerhound",
-      "sex": "male"
+      "name": "undefined",
+      "breed": "Hello",
+      "sex": "undefined"
     },
     {
       "id": 2,
       "name": "Greggory Karen-Mason",
-      "breed": "undefined",
+      "breed": "Cat ",
       "sex": "undefined"
     },
     {

@@ -36,8 +36,9 @@ fetch(url).then(res => res.json()).then(dogs => loadDogTable(dogs))
 
 document.addEventListener('click', function(e){
     e.preventDefault()
-    if (e.target.innerHTML = 'Edit'){
+    if (e.target.innerHTML === 'Edit'){
         const editDogID = e.target.id
+        console.log(editDogID, 'we are on line 41')
            fetch(`${url}/${editDogID}`).then(res => res.json()).then(dog => {
                fromName.value = dog.name
                formBreed.value = dog.breed
@@ -62,25 +63,25 @@ document.addEventListener('click', function(e){
                                       breed: newBreed,
                                       sex: newSex
                                   })
-                              })
+                              }).then(res => res.json()).then(res => console.log(res))
+                              console.log(editDogID)
                })
                
            })
 
     } else if (e.target.localName == 'input'){
-        console.log(e.target)
         e.preventDefault()
-        fromName.value = dog.name
-        formBreed.value = dog.breed
-        formSex.value = dog.sex
+        // fromName.value = dog.name
+        // formBreed.value = dog.breed
+        // formSex.value = dog.sex
        
     } else {e.preventDefault()}
 })
 
 
-form.addEventListener('click', function(e){
-    e.preventDefault()
-})
+// form.addEventListener('click', function(e){
+//     e.preventDefault()
+// })
 
 
 })
