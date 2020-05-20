@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //function to render all dogs to table, invoked in fetch call above
     let renderDogs = (data) => {
+
+        tableBody.innerHTML = ''
+
         for (const dog of data) {
             
             //Build up HTML for <tr>
@@ -79,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //save form values to variables
         const form = e.target
-        console.log(form)
         const dogId = form.querySelector('input[name="id"]')
         const dogName = form.querySelector('input[name="name"]')
         const dogBreed = form.querySelector('input[name="breed"]')
@@ -92,12 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         formPatch(dogId.value, dogName.value, dogBreed.value, dogSex.value)
 
     })
-
-    let reRenderTable = () => {
-        return fetch(url)
-            .then(resp => resp.json())
-            .then(json => renderDogs(json))
-    }
 
     //function to patch updated data
     let formPatch = (id, dogName, dogBreed, dogSex) => {
@@ -113,17 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 sex: dogSex
               })
         })
-            // .then(getAllDogs()) //re-render table by calling on initial get request function --> this isn't working right now
-            .then(resp => resp.json())
-            .then(json => updateRecord(json))
             .then(dogForm.reset()) //clear values from table
+            .then(getAllDogs())
 
-            //this isn't a DRY way, prefer to do it by rerendering everything but it's not working
-            let updateRecord = (dog) => {
-                const tr = tableBody.querySelector('`tr[data-id=""]`')
-
-
-            }
+    //function to re-render all dogs to table
+    let reRenderTable = () => {
+        return fetch(url)
+            .then(resp => resp.json())
+            .then(json => renderDogs(json))
+    }
+            
     }
 
 })

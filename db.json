@@ -2,9 +2,9 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Babyyy",
-      "breed": "Scottish Deerhound",
-      "sex": "female"
+      "name": "Babe",
+      "breed": "Scot Deerhound",
+      "sex": "male"
     },
     {
       "id": 2,
@@ -14,9 +14,9 @@
     },
     {
       "id": 3,
-      "name": "Snickerss",
+      "name": "Snickers",
       "breed": "Daachshund",
-      "sex": "femalee"
+      "sex": "female"
     },
     {
       "id": 4,
@@ -118,7 +118,7 @@
       "id": 20,
       "name": "Coco",
       "breed": "Affenpinscher",
-      "sex": "female"
+      "sex": "male"
     }
   ]
 }
