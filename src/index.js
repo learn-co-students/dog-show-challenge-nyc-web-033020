@@ -61,8 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const dogSexInput = dogForm.childNodes[5]
         dogSexInput.value = dogSex
 
-        console.log(dogId)
-
         //create a hidden field on the form to store the record's id for update purposes
         const hiddenInput = document.createElement('input')
         hiddenInput.setAttribute('type', 'hidden')
@@ -70,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenInput.setAttribute('value', dogId)
 
         dogForm.prepend(hiddenInput)
-        console.log(dogForm.childNodes[0].value)
 
     }
 
@@ -82,19 +79,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //save form values to variables
         const form = e.target
-        console.log
-        // const dogName =
+        console.log(form)
+        const dogId = form.querySelector('input[name="id"]')
+        const dogName = form.querySelector('input[name="name"]')
+        const dogBreed = form.querySelector('input[name="breed"]')
+        const dogSex = form.querySelector('input[name="sex"]')
 
         const hiddenInput = dogForm.childNodes[0] //select hidden ID field
         hiddenInput.remove()    //remove hidden ID field
 
-        e.target.reset() //remove form values
+        // e.target.reset() //remove form values
 
         //invoke patch request on server
+        formPatch(dogId.value, dogName.value, dogBreed.value, dogSex.value)
+
     })
 
-    // let formPatch = (id) => {
-
-    // }
+    //function to patch updated data
+    let formPatch = (id, dogName, dogBreed, dogSex) => {
+        fetch(`${url}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: dogName,
+                breed: dogBreed,
+                dogSex: dogSex
+              })
+        })
+            .then(resp => resp.json())
+            .then(json => console.log(json))
+    }
 
 })
