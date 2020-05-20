@@ -41,14 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const dogName = tr.childNodes[1].textContent //Save name to variable
             const dogBreed = tr.childNodes[3].textContent //Save breed to variable
             const dogSex = tr.childNodes[5].textContent //Save sex to variable
+            const dogId = tr.dataset.id
 
             //invoke function below to add values to form
-            populateFormData(dogName, dogBreed, dogSex)
+            populateFormData(dogName, dogBreed, dogSex, dogId)
         }
     })
 
     //Function to populate edit form from selected record in table
-    let populateFormData = (dogName, dogBreed, dogSex) => {
+    let populateFormData = (dogName, dogBreed, dogSex, dogId) => {
         
         //Look into better way to get these nodes instead of using index numbers
         const dogNameInput = dogForm.childNodes[1]
@@ -59,8 +60,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dogSexInput = dogForm.childNodes[5]
         dogSexInput.value = dogSex
+
+        console.log(dogId)
+
+        //create a hidden field on the form to store the record's id for update purposes
+        const hiddenInput = document.createElement('input')
+        hiddenInput.setAttribute('type', 'hidden')
+        hiddenInput.setAttribute('name', 'id')
+        hiddenInput.setAttribute('value', dogId)
+
+        dogForm.prepend(hiddenInput)
+        console.log(dogForm.childNodes[0].value)
+
     }
 
+    
 
+    //form submit event listener
+    dogForm.addEventListener('submit', (e) => {
+        e.preventDefault() //prevent page reload
+
+        //save form values to variables
+        const form = e.target
+        console.log
+        // const dogName =
+
+        const hiddenInput = dogForm.childNodes[0] //select hidden ID field
+        hiddenInput.remove()    //remove hidden ID field
+
+        e.target.reset() //remove form values
+
+        //invoke patch request on server
+    })
+
+    // let formPatch = (id) => {
+
+    // }
 
 })
