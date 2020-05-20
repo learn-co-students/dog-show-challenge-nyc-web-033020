@@ -7,6 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderDogs(allDogs){
         dogsTable = document.querySelector('#table-body')
+
+        // dogForm = document.querySelector('#dog-form')
+
+        // dogForm.addEventListener('submit', e => {
+        //     e.preventDefault()
+        //     fetch(dogsUrl + '/' +`${dog.id}`, {
+        //         method: 'PATCH',
+        //         headers:{
+        //             'Content-Type': 'application/json',
+        //             'Accept': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             "name": dogForm.name.value,
+        //             "breed": dogForm.breed.value,
+        //             "sex": dogForm.sex.value
+        //         })
+        //     })
+        // })
+
+
         allDogs.forEach(dog => {
             newDogRow = document.createElement('tr')
             newDogRow.innerHTML = `
@@ -23,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 dogForm.breed.value = dog.breed
                 dogForm.sex.value = dog.sex
             })
+        })
             dogForm.addEventListener('submit', e => {
-                event.preventDefault()
+                e.preventDefault()
                 fetch(dogsUrl + '/' +`${dog.id}`, {
                     method: 'PATCH',
                     headers:{
@@ -38,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                 })
             })
-        })
 
     }
 
@@ -49,14 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // X render a list of already registered dogs
 // X dog should be put on the table as a table row
-    // `<tr>
-    //     <td>Dog *Name*</td> 
-    //     <td>*Dog Breed*</td> 
-    //     <td>*Dog Sex*</td> 
-    //     <td><button>Edit</button></td>
-    // </tr>`
-// make dog editable via edit button
-    // form populates with dog's current info
+// X `<tr>
+// X     <td>Dog *Name*</td> 
+// X     <td>*Dog Breed*</td> 
+// X     <td>*Dog Sex*</td> 
+// X     <td><button>Edit</button></td>
+// X </tr>`
+// X make dog editable via edit button
+// X form populates with dog's current info
+
 // submit 'PATCH' to to http://localhost:3000/dogs/:id
     // including name, breed and sex attributes
     // make new get request for all dogs to show updated list
