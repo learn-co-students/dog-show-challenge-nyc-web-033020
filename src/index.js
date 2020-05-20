@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function patchDog(newDog) {
     fetch(baseUrl + newDog.id, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
@@ -60,5 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dogForm.addEventListener("submit", e => {
     e.preventDefault()
+    const newDog = {
+        "id": editDogId,
+        "name": e.target.name.value,
+        "breed": e.target.breed.value,
+        "sex": e.target.sex.value,
+    }
+
+    patchDog(newDog)
   })
 })
