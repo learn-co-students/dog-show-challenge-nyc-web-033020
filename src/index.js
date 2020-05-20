@@ -32,7 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function editedDog(e) {
         let dog = {
-            
-        }
+            name: e.target.parentElement.name.value, 
+            breed: e.target.parentElement.breed.value,
+            sex: e.target.parentElement.sex.value
+        } 
+
+        fetch(dogsUrl + id, {
+            method: "PATCH", 
+            headers: {
+                "Content-Type": "application/json", 
+                Accept: "application/json"
+            }
+        })
     }
 })
