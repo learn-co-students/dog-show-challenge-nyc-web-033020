@@ -25,9 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //click on dog's edit button should populate form with dog's data
     table.addEventListener('click', (e) => {
         if (e.target.className === 'edit-btn') {
-            e.target = table.row 
+            i = event.target.rows
+            console.log(i)
+            // table.rows[i]
+            // debugger
+            // e.target = table.rows 
             // console.log(e.target)
-            table.rows[e].cells[0].innerHTML = dogForm.name.value
+            // table.rows[e.target].cells[0].innerHTML = dogForm.name.value
 
             // dogForm.addEventListener('submit', (e) => {
             //     e.preventDefault()
