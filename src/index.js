@@ -18,7 +18,7 @@ PSEUDO CODE
 
 √ Get the edit button
 √ Grab the target of the edit button's values (should be dog's values)
-- Get the top edit form
+√ Get the top edit form
 - Populate the top form with the dog's values
 
 USER STORY
@@ -33,9 +33,9 @@ USER STORY
 const url = "http://localhost:3000/dogs"
 const dogDisplay = document.querySelector('#table-body')
 const dogForm = document.querySelector('#dog-form')
-const dogFormName = dogForm.children[0].value
-const dogFormBreed = dogForm.children[1]
-const dogFormSex = dogForm.children[2]
+let dogFormName = dogForm[0].value
+let dogFormBreed = dogForm[1].value
+let dogFormSex = dogForm[2].value
 
 populateDogTable()
 
@@ -67,6 +67,8 @@ document.addEventListener('click', e => {
         const dogBreed = dogRowInfo.children[1].textContent
         const dogSex = dogRowInfo.children[2].textContent
 
-        
+        dogFormName = dogName
+        dogFormBreed = dogBreed
+        dogFormSex = dogSex
     }
 })
