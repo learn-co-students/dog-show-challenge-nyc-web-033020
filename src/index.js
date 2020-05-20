@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const url = 'http://localhost:3000/dogs'
     const tableBody = document.querySelector('#table-body')
+    const dogForm = document.querySelector('#dog-form')
 
     // Fetch request to "index" action
     let getAllDogs = () => {
@@ -36,13 +37,30 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const btn = e.target;
             const tr = btn.parentNode.parentNode
+            //Look into better way to get these nodes instead of using index numbers
             const dogName = tr.childNodes[1].textContent //Save name to variable
             const dogBreed = tr.childNodes[3].textContent //Save breed to variable
             const dogSex = tr.childNodes[5].textContent //Save sex to variable
 
             //invoke function below to add values to form
-            
+            populateFormData(dogName, dogBreed, dogSex)
         }
     })
+
+    //Function to populate edit form from selected record in table
+    let populateFormData = (dogName, dogBreed, dogSex) => {
+        
+        //Look into better way to get these nodes instead of using index numbers
+        const dogNameInput = dogForm.childNodes[1]
+        dogNameInput.value = dogName
+
+        const dogBreedInput = dogForm.childNodes[3]
+        dogBreedInput.value = dogBreed
+
+        const dogSexInput = dogForm.childNodes[5]
+        dogSexInput.value = dogSex
+    }
+
+
 
 })
