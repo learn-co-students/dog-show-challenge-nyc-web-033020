@@ -2,17 +2,12 @@ state = {
     dogId: null,
 }
 
-function getAllDogsFromServer() {
-    fetch(`http://localhost:3000/dogs`)
-        .then(response => response.json())
-        .then(dogs => {
-            renderAllDogs(dogs)
-        })
-}
-
 function renderAllDogs(dogs) {
+    //this is the container, table Body
     let tableBody = document.getElementById("table-body")
     tableBody.innerHTML = ""
+    //set container .innerHTML equal to a value of empty text
+
     dogs.forEach(dog => {
         tableBody.innerHTML +=
             `<tr id="${dog.id}">
@@ -24,6 +19,14 @@ function renderAllDogs(dogs) {
         </td>
     </tr>`
     })
+}
+
+function getAllDogsFromServer() {
+    fetch(`http://localhost:3000/dogs`)
+        .then(response => response.json())
+        .then(dogs => {
+            renderAllDogs(dogs)
+        })
 }
 
 function clickEditButton() {
@@ -40,7 +43,7 @@ function clickEditButton() {
 }
 
 function clickEditButtonRenderDogInForm(dog) {
-    const dogForm = document.getElementById('dog-form')
+    dogForm = document.getElementById("dog-form")
     dogForm.name.value = dog.name
     dogForm.breed.value = dog.breed
     dogForm.sex.value = dog.sex
@@ -49,7 +52,7 @@ function clickEditButtonRenderDogInForm(dog) {
 document.addEventListener("submit", function(event){
     const form = event.target
     event.preventDefault()
-
+    
     const options = {
         method: 'PATCH',
         headers: {
@@ -62,33 +65,11 @@ document.addEventListener("submit", function(event){
             sex: form.sex.value
         })
     }
-
     fetch(`http://localhost:3000/dogs/${state.dogId}`, options)
     .then(response => response.json())
     .then(getAllDogsFromServer)
-
-
 })
-// document.addEventListener("submit", function(event){
-//     const form = event.target
-//     event.preventDefault()
-    
-//     const options = {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Accept': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             name: form.name.value,
-//             breed: form.breed.value,
-//             sex: form.sex.value
-//         })
-//     }
-//     fetch(`http://localhost:3000/dogs/${state.dogId}`, options)
-//     .then(response => response.json())
-//     .then(getAllDogsFromServer)
-// })
+
 
 document.addEventListener('DOMContentLoaded', () => {
     getAllDogsFromServer()

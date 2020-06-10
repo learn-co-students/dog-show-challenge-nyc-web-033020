@@ -2,13 +2,13 @@
   "dogs": [
     {
       "id": 1,
-      "name": "BabyFace",
+      "name": "Elias",
       "breed": "Scottish Deerhound",
       "sex": "male"
     },
     {
       "id": 2,
-      "name": "Teddy",
+      "name": "Ultimate Dog",
       "breed": "Rhodesian Ridgeback",
       "sex": "female"
     },
@@ -26,15 +26,15 @@
     },
     {
       "id": 5,
-      "name": "Gracie",
-      "breed": "Miniature Pinscher",
-      "sex": "female"
+      "name": "Hero",
+      "breed": "Miniature",
+      "sex": "any sex"
     },
     {
       "id": 6,
       "name": "Oreo",
       "breed": "English Springer",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 7,
@@ -45,7 +45,7 @@
     {
       "id": 8,
       "name": "Chloe",
-      "breed": "Dandie Terrier",
+      "breed": "Golden Retreiver ",
       "sex": "male"
     },
     {
